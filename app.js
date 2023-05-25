@@ -31,7 +31,7 @@ connection.connect((err) => {
 app.use(express.json());
 
 // Rota para registro de usuário
-app.post('/register', (req, res) => {
+app.post('/register', (req) => {
   const { name, email, password } = req.body;
   connection.query('INSERT INTO user_tbl (user_name, user_email, user_password) VALUES (?, ?, ?)', [name, email, password], (err, result) => {
     if (err) {
@@ -39,8 +39,6 @@ app.post('/register', (req, res) => {
       res.status(500).json({ error: 'Erro ao registrar usuário' });
       return;
     }
-    // Redirecionar para a página 4 após o registro bem-sucedido
-    res.redirect('/page4');
   });
 });
 
