@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <meta name="theme-color" content="#FFFFFF">
+        <meta charset="UTF-8">
+        <title>ReciTur</title>
+        <link rel="manifest" href="/manifest.json">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/main.css">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIjn7yc2qdAWYWozx6OpupHdsv0yDFDIs&libraries=places&callback=initMap"></script>
+        <script>
+			if ('serviceWorker' in navigator) {
+			  navigator.serviceWorker.register('/service-worker.js')
+				.then(function(registration) {
+				  console.log('Service Worker registrado com sucesso:', registration.scope);
+				})
+				.catch(function(error) {
+				  console.log('Falha ao registrar o Service Worker:', error);
+				});
+			}
+		</script>
+    </head>
+    <body>
+        <div class="page-container-class" id="pages">
+            <div class="page-class" id="page1">
+                <div class="map-class" id="map"></div>
+                <div class="search-bar-container-class" id="searchBarContainer">
+                    <div class="search-bar-class" id="searchBar">
+                        <i class="fas fa-search"></i>
+                        <input id="search" type="text" placeholder="Pesquisar...">
+                    </div>
+                    <button class="geolocation-permission-class" id="clearLocationButton"><i class="fas fa-crosshairs"></i></button>
+                    <button class="routes-class" id="routes"><i class="fas fa-map-marked-alt"></i></button>
+                </div>
+                <div id="bottom-section"></div>
+            </div>
+            <div class="page-class" id="page2">
+                <div class="null-class" id="null"></div>
+                <div class="card-root">
+                    <div class="card">
+                        <div class="card-text">Tudo</div>
+                        <button class="arrow-back"><i class="fas fa-arrow-left" ></i></button>
+                        <button class="arrow-next"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="page-class" id="page3">
+                <div class="search-bar-container-class" id="searchBarContainer">
+                    <div class="search-bar-class-2" id="searchBar">
+                        <i class="fas fa-search"></i>
+                        <input id="search" type="text" placeholder="Pesquisar...">
+                    </div>
+                </div>
+                <div class="null-class" id="null"></div>
+                <div class="text-class">Lista de Guias Turísticos:</div>
+                <button class="button-guide">
+                    <div class="guide">Pedro Henrique</div>
+                    <div class="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=5511987654321"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </button>
+                <button class="button-guide">
+                    <div class="guide">Mirelle Coutinho</div>
+                    <div class="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=5511987654321"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </button>
+                <button class="button-guide">
+                    <div class="guide">Jaqueline Lins</div>
+                    <div class="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=5511987654321"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </button>
+                <button class="button-guide">
+                    <div class="guide">Douglas Guedes</div>
+                    <div class="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=5511987654321"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </button>
+                <button class="button-guide">
+                    <div class="guide">Natalia Gabriele</div>
+                    <div class="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=5511987654321"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </button>
+                <button class="button-guide">
+                    <div class="guide">Jullyana França</div>
+                    <div class="whatsapp">
+                        <a href="https://api.whatsapp.com/send?phone=5511987654321"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </button>
+            </div>
+            <div class="page-class" id="page4">
+                <div class="null-class" id="null"></div>
+                <div>
+                    <img src="images/user-192x192.png" alt="Descrição da imagem" width="150" height="150">
+                </div>
+                <div class="hello-user">Olá, Usuário!</div>
+                <div class="null-class-2" id="null"></div>
+                <div class="null-class-3" id="null">Cadastro</div>
+                <button class="signin">Registrar</i></button>
+                <button class="login">Entrar</i></button>
+                <button class="exit">Sair</i></button>
+                <div class="null-class-3" id="null"></div>
+                <div class="null-class-3" id="null">Configurações</div>
+                <button class="user-button">Idioma</button>
+                <button class="user-button">Suporte</button>
+                <button class="user-button">Termos de Privacidade</button>
+            </div>
+            <div class="page-class" id="page5">
+                <h2>Registrar</h2>
+                <form id="registrationForm" action="/register" method="POST">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Registrar</button>
+                </form>
+            </div>
+            <div class="page-class" id="page6">
+                <h2>Entrar</h2>
+                <form id="loginForm" action="/login" method="POST">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Entrar</button>
+                </form>
+            </div>
+        </div>
+        <div class="navbar-class" id="navbar">
+            <button class="navbar-button-class active" id="page1NavbarButton" data-page="page1"><i class="fas fa-home"></i></button>
+            <button class="navbar-button-class"        id="page2NavbarButton" data-page="page2"><i class="fas fa-list"></i></button>
+            <button class="navbar-button-class"        id="page3NavbarButton" data-page="page3"><i class="fas fa-map" ></i></button>
+            <button class="navbar-button-class"        id="page4NavbarButton" data-page="page4"><i class="fas fa-user"></i></button>
+        </div>    
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/signlogin.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
